@@ -49,7 +49,6 @@ public class MainWindow extends javax.swing.JFrame {
         CurrTime = new javax.swing.JLabel();
         Calender = new javax.swing.JLabel();
         Clock = new javax.swing.JLabel();
-        un = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         SidePanel = new javax.swing.JPanel();
@@ -163,10 +162,6 @@ public class MainWindow extends javax.swing.JFrame {
         Clock.setMinimumSize(new java.awt.Dimension(34, 30));
         Clock.setPreferredSize(new java.awt.Dimension(34, 30));
         TopPanel.add(Clock, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 34, 30));
-
-        un.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        un.setForeground(new java.awt.Color(255, 255, 255));
-        TopPanel.add(un, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 100, 130, 20));
 
         jButton2.setBackground(new java.awt.Color(219, 76, 13));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logout.png"))); // NOI18N
@@ -788,7 +783,6 @@ public class MainWindow extends javax.swing.JFrame {
     private static javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private static javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel un;
     private javax.swing.JLabel un1;
     // End of variables declaration//GEN-END:variables
 }

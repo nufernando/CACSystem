@@ -5,6 +5,7 @@
  */
 package home;
 
+import common.PredefineMethods;
 import java.awt.Color;
 
 /**
@@ -12,7 +13,6 @@ import java.awt.Color;
  * @author User
  */
 public class Login extends javax.swing.JFrame {
-
     /**
      * Creates new form Login
      */
@@ -37,7 +37,6 @@ public class Login extends javax.swing.JFrame {
         uname = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        un = new javax.swing.JLabel();
         pw = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
@@ -87,9 +86,6 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, 120, 40));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
-
-        un.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(un, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 210, 20));
 
         pw.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 210, 20));
@@ -148,7 +144,14 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_unameMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
+        String username = uname.getText().toString();
+        String password = pass.getText().toString();
+               
+        if(username.equals("admin") && password.equals(new PredefineMethods().getAdminPassword())){
+            this.dispose();
+            new MainWindow().setVisible(true);
+        }else if(username.equals("") || password.equals("")){PredefineMethods.viewJoptionPane("You must specify values for the required fields.");}
+        else{PredefineMethods.viewJoptionPane("Data Missmatch");}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passMouseClicked
@@ -217,7 +220,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPasswordField pass;
     private javax.swing.JLabel pw;
-    private javax.swing.JLabel un;
     private javax.swing.JTextField uname;
     // End of variables declaration//GEN-END:variables
 }

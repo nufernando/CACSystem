@@ -7,6 +7,9 @@ package people;
 
 import common.PredefineMethods;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 
 /**
@@ -28,10 +31,8 @@ public class People extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        attendance = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         listEmp = new javax.swing.JButton();
         listCust = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -45,28 +46,6 @@ public class People extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        attendance.setBackground(new java.awt.Color(0, 150, 150));
-        attendance.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        attendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ViewSize.png"))); // NOI18N
-        attendance.setText("View Size");
-        attendance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        attendance.setPreferredSize(new java.awt.Dimension(100, 100));
-        attendance.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        attendance.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                attendanceMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                attendanceMouseExited(evt);
-            }
-        });
-        attendance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                attendanceActionPerformed(evt);
-            }
-        });
-        jPanel2.add(attendance, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 120, 120));
 
         jButton1.setBackground(new java.awt.Color(0, 150, 150));
         jButton1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -90,7 +69,7 @@ public class People extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(0, 150, 150));
         jButton4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -112,29 +91,7 @@ public class People extends javax.swing.JInternalFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
-
-        jButton5.setBackground(new java.awt.Color(0, 150, 150));
-        jButton5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LeaderBoard.png"))); // NOI18N
-        jButton5.setText("Leader Board");
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setPreferredSize(new java.awt.Dimension(100, 100));
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton5MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton5MouseExited(evt);
-            }
-        });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 120, 120));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
 
         listEmp.setBackground(new java.awt.Color(0, 150, 150));
         listEmp.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -156,7 +113,7 @@ public class People extends javax.swing.JInternalFrame {
                 listEmpActionPerformed(evt);
             }
         });
-        jPanel2.add(listEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
+        jPanel2.add(listEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, -1));
 
         listCust.setBackground(new java.awt.Color(0, 150, 150));
         listCust.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -178,7 +135,7 @@ public class People extends javax.swing.JInternalFrame {
                 listCustActionPerformed(evt);
             }
         });
-        jPanel2.add(listCust, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
+        jPanel2.add(listCust, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 150, 150));
         jButton2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -200,7 +157,7 @@ public class People extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, -1, -1));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
 
         jButton6.setBackground(new java.awt.Color(0, 150, 150));
         jButton6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -224,7 +181,7 @@ public class People extends javax.swing.JInternalFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, -1, 120));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, -1, 120));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -286,18 +243,6 @@ public class People extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void attendanceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_attendanceMouseEntered
-        PredefineMethods.setButtonColor(attendance);
-    }//GEN-LAST:event_attendanceMouseEntered
-
-    private void attendanceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_attendanceMouseExited
-        PredefineMethods.resetButtonColor(attendance);
-    }//GEN-LAST:event_attendanceMouseExited
-
-    private void attendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attendanceActionPerformed
-
-    }//GEN-LAST:event_attendanceActionPerformed
-
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
         PredefineMethods.setButtonColor(jButton1);
     }//GEN-LAST:event_jButton1MouseEntered
@@ -307,8 +252,11 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1MouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AddCustomer ob1 = new AddCustomer();
-        ob1.setVisible(true);
+        AddCustomer ob1;
+        try {
+            ob1 = new AddCustomer();
+            ob1.setVisible(true);
+        } catch (SQLException ex) { Logger.getLogger(People.class.getName()).log(Level.SEVERE, null, ex);}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
@@ -323,18 +271,6 @@ public class People extends javax.swing.JInternalFrame {
         AddSupplier ob1 = new AddSupplier();
         ob1.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
-        PredefineMethods.setButtonColor(jButton5);
-    }//GEN-LAST:event_jButton5MouseEntered
-
-    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
-        PredefineMethods.resetButtonColor(jButton5);
-    }//GEN-LAST:event_jButton5MouseExited
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void listEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listEmpMouseEntered
         PredefineMethods.setButtonColor(listEmp);
@@ -390,11 +326,9 @@ public class People extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton attendance;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
