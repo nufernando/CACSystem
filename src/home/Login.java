@@ -62,7 +62,6 @@ public class Login extends javax.swing.JFrame {
 
         uname.setBackground(new java.awt.Color(0, 150, 150));
         uname.setForeground(new java.awt.Color(255, 255, 255));
-        uname.setText("s12345");
         uname.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 unameMouseClicked(evt);
@@ -97,7 +96,6 @@ public class Login extends javax.swing.JFrame {
 
         pass.setBackground(new java.awt.Color(0, 150, 150));
         pass.setForeground(new java.awt.Color(255, 255, 255));
-        pass.setText("tenusha");
         pass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passMouseClicked(evt);

@@ -7,7 +7,7 @@ package home;
 
 /**
  *
- * @author User
+ *
  */
 public class Dashboard extends javax.swing.JInternalFrame {
 

@@ -5,6 +5,7 @@
  */
 package production;
 
+import common.PredefineMethods;
 import java.awt.Color;
 import javax.swing.JButton;
 
@@ -21,9 +22,6 @@ public class Process extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-    void setButtonColor(JButton button) { button.setBackground(new Color(0, 165, 165));}
-
-    void resetButtonColor(JButton button) { button.setBackground(new Color(0, 150, 150));}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -135,11 +133,11 @@ public class Process extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
-        setButtonColor(jButton2);
+        PredefineMethods.setButtonColor(jButton2);
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        resetButtonColor(jButton2);
+        PredefineMethods.resetButtonColor(jButton2);
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -147,11 +145,11 @@ public class Process extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
-        setButtonColor(jButton4);
+        PredefineMethods.setButtonColor(jButton4);
     }//GEN-LAST:event_jButton4MouseEntered
 
     private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
-        resetButtonColor(jButton4);
+        PredefineMethods.resetButtonColor(jButton4);
     }//GEN-LAST:event_jButton4MouseExited
 
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
