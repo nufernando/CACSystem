@@ -30,10 +30,6 @@ public class MainWindow extends javax.swing.JFrame {
         CurrTime.setText(PredefineMethods.getSystemTime());
     }
     
-    void setColor(JPanel panel) { panel.setBackground(new Color(0, 165, 165));}
-
-    void resetColor(JPanel panel) { panel.setBackground(new Color(0, 150, 150));}
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -609,11 +605,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ProductionMouseClicked
 
     private void ProductionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductionMouseEntered
-        setColor(Production);
+        PredefineMethods.setColor(Production);
     }//GEN-LAST:event_ProductionMouseEntered
 
     private void ProductionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductionMouseExited
-        resetColor(Production);
+        PredefineMethods.resetColor(Production);
     }//GEN-LAST:event_ProductionMouseExited
 
     private void InventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventoryMouseClicked
@@ -624,11 +620,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_InventoryMouseClicked
 
     private void InventoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventoryMouseEntered
-        setColor(Inventory);
+        PredefineMethods.setColor(Inventory);
     }//GEN-LAST:event_InventoryMouseEntered
 
     private void InventoryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventoryMouseExited
-        resetColor(Inventory);
+        PredefineMethods.resetColor(Inventory);
     }//GEN-LAST:event_InventoryMouseExited
 
     private void PeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeopleMouseClicked
@@ -639,11 +635,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_PeopleMouseClicked
 
     private void PeopleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeopleMouseEntered
-        setColor(People);
+        PredefineMethods.setColor(People);
     }//GEN-LAST:event_PeopleMouseEntered
 
     private void PeopleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeopleMouseExited
-        resetColor(People);
+        PredefineMethods.resetColor(People);
     }//GEN-LAST:event_PeopleMouseExited
 
     private void DBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DBMouseClicked
@@ -654,11 +650,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_DBMouseClicked
 
     private void DBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DBMouseEntered
-        setColor(DB);
+        PredefineMethods.setColor(DB);
     }//GEN-LAST:event_DBMouseEntered
 
     private void DBMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DBMouseExited
-        resetColor(DB);
+        PredefineMethods.resetColor(DB);
     }//GEN-LAST:event_DBMouseExited
 
     private void SPLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SPLMouseClicked
@@ -669,11 +665,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_SPLMouseClicked
 
     private void SPLMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SPLMouseEntered
-        setColor(SPL);
+        PredefineMethods.setColor(SPL);
     }//GEN-LAST:event_SPLMouseEntered
 
     private void SPLMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SPLMouseExited
-        resetColor(SPL);
+        PredefineMethods.resetColor(SPL);
     }//GEN-LAST:event_SPLMouseExited
 
     private void DashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashMouseClicked
@@ -684,11 +680,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_DashMouseClicked
 
     private void DashMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashMouseEntered
-        setColor(Dash);
+        PredefineMethods.setColor(Dash);
     }//GEN-LAST:event_DashMouseEntered
 
     private void DashMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashMouseExited
-        resetColor(Dash);
+        PredefineMethods.resetColor(Dash);
     }//GEN-LAST:event_DashMouseExited
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
