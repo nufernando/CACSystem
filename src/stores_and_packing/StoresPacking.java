@@ -7,6 +7,7 @@ package stores_and_packing;
 
 import common.PredefineMethods;
 import java.awt.Color;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -19,8 +20,16 @@ public class StoresPacking extends javax.swing.JInternalFrame {
     /**
      * Creates new form StoresPacking
      */
-    public StoresPacking() {
+    public StoresPacking() throws IOException {
         initComponents();
+        if(!PredefineMethods.readFile("F:\\NetBeans_Workspace\\CACSystem\\output\\userType.txt").equals("admin")){
+            hideComponents();
+        }  
+    }
+    private void hideComponents(){
+        jButton3.setVisible(false);
+        jButton5.setVisible(false);
+        jButton7.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")

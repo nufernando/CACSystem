@@ -2,6 +2,9 @@ package common;
 
 import database.DBconnect;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -10,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.*; 
 import org.freixas.jcalendar.JCalendarCombo;
+import java.util.*;
 
 public class PredefineMethods {
     private String adminPassword = "12345";
@@ -91,6 +95,28 @@ public class PredefineMethods {
     public static void fillComboBox(JComboBox box, String qry) throws SQLException{
         ResultSet rs = viewDBresultset(qry);
          while (rs.next()) {box.addItem(rs.getString(1));}
+    }
+    
+    //to write String in a file
+    public static void writeInFile (String filePath, String text) throws IOException{
+        FileOutputStream outputStream = new FileOutputStream(filePath);
+        byte[] strToBytes = text.getBytes();
+        outputStream.write(strToBytes);
+        outputStream.close();
+    }
+    
+    //Read file to srting 
+    public static String readFile (String filePath) throws IOException{
+        File file = new File(filePath);
+        StringBuilder fileContents = new StringBuilder((int)file.length());    
+        try (Scanner scanner = new Scanner(file)) {
+        while(scanner.hasNextLine()) {
+            fileContents.append(scanner.nextLine() + System.lineSeparator());}
+      } String result = "";
+        for(int x = 0 ; x < fileContents.toString().length() ; x++){
+            if(Character.isLetter(fileContents.toString().charAt(x))){
+                result = result + fileContents.toString().charAt(x);}
+        } return result;
     }
     
    

@@ -7,6 +7,7 @@ package people;
 
 import common.PredefineMethods;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,8 +22,16 @@ public class People extends javax.swing.JInternalFrame {
     /**
      * Creates new form People1
      */
-    public People() {
+    public People() throws IOException {
         initComponents();
+        if(!PredefineMethods.readFile("F:\\NetBeans_Workspace\\CACSystem\\output\\userType.txt").equals("admin")){
+            hideComponents();
+        }  
+    }
+    private void hideComponents(){
+        jButton1.setVisible(false);
+        jButton2.setVisible(false);
+        jButton4.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")

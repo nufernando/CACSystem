@@ -7,6 +7,7 @@ package inventory;
 
 import common.PredefineMethods;
 import java.awt.Color;
+import java.io.IOException;
 import javax.swing.JButton;
 
 /**
@@ -18,8 +19,14 @@ public class Inventory extends javax.swing.JInternalFrame {
     /**
      * Creates new form Inventory
      */
-    public Inventory() {
+    public Inventory() throws IOException {
         initComponents();
+         if(!PredefineMethods.readFile("F:\\NetBeans_Workspace\\CACSystem\\output\\userType.txt").equals("admin")){
+            hideComponents();
+        }
+    }
+    private void hideComponents(){
+        jButton4.setVisible(false);
     }
     
     @SuppressWarnings("unchecked")

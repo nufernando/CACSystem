@@ -7,6 +7,7 @@ package maintenance;
 
 import common.PredefineMethods;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,8 +22,19 @@ public class Maintenance extends javax.swing.JInternalFrame {
     /**
      * Creates new form Maintenance
      */
-    public Maintenance() {
+    public Maintenance() throws IOException {
         initComponents();
+        if(!PredefineMethods.readFile("F:\\NetBeans_Workspace\\CACSystem\\output\\userType.txt").equals("admin")){
+            hideComponents();
+        }     
+    }
+    
+    private void hideComponents(){
+        jButton9.setVisible(false);
+        jButton2.setVisible(false);
+        jButton4.setVisible(false);
+        jButton3.setVisible(false);
+        jButton7.setVisible(false);
     }
    
     @SuppressWarnings("unchecked")
@@ -370,8 +382,14 @@ public class Maintenance extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        AddTools ob1 = new AddTools();
-        ob1.setVisible(true);
+        AddTools ob1;
+        try {
+            ob1 = new AddTools();
+            ob1.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Maintenance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

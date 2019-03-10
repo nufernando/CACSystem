@@ -7,6 +7,9 @@ package home;
 
 import common.PredefineMethods;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -145,13 +148,17 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username = uname.getText().toString();
-        String password = pass.getText().toString();
-               
+        String password = pass.getText().toString();        
         if(username.equals("admin") && password.equals(new PredefineMethods().getAdminPassword())){
             this.dispose();
             new MainWindow().setVisible(true);
+            try {
+                PredefineMethods.writeInFile("F:\\NetBeans_Workspace\\CACSystem\\output\\userType.txt", "admin");
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);}
         }else if(username.equals("") || password.equals("")){PredefineMethods.viewJoptionPane("You must specify values for the required fields.");}
         else{PredefineMethods.viewJoptionPane("Data Missmatch");}
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passMouseClicked
