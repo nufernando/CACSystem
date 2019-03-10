@@ -3,13 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/NetBeans_Workspace/CACSystem/src/maintenance/AddServices.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/stores_and_packing/StoresPacking.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/inventory/ViewChemicalRecipies.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/home/MainWindow.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/inventory/ViewFertilizerRecipies.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/stores_and_packing/AddPlant.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/stores_and_packing/AddChemical.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/maintenance/ViewRepair.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/stores_and_packing/AddFertilizer.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/stores_and_packing/ViewFertilizer.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/stores_and_packing/ViewPlant.java</file>
             <file>file:/F:/NetBeans_Workspace/CACSystem/src/common/PredefineMethods.java</file>
-            <file>file:/F:/NetBeans_Workspace/CACSystem/src/maintenance/AddRepair.java</file>
-            <file>file:/F:/NetBeans_Workspace/CACSystem/src/maintenance/AddTools.java</file>
-            <file>file:/F:/NetBeans_Workspace/CACSystem/src/maintenance/Maintenance.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/production/Process.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/stores_and_packing/ViewChemical.java</file>
             <file>file:/F:/NetBeans_Workspace/CACSystem/src/maintenance/AddMachine.java</file>
-            <file>file:/F:/NetBeans_Workspace/CACSystem/src/home/Dashboard.java</file>
+            <file>file:/F:/NetBeans_Workspace/CACSystem/src/inventory/Inventory.java</file>
         </group>
     </open-files>
 </project-private>
