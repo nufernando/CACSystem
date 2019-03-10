@@ -1,10 +1,20 @@
 package common;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import database.DBconnect;
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -140,6 +150,37 @@ public class PredefineMethods {
         }
         return input;
     }
+    
+    //Print table to PDF
+    public void printPDF(String filePath, JTable table) throws Exception{
+        try{
+        Document doc = new Document(PageSize.A4.rotate() );
+        PdfWriter.getInstance(doc, new FileOutputStream(filePath));
+        doc.open();
+        PdfPTable pdfTable = new PdfPTable(table.getColumnCount());
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                pdfTable.addCell(table.getColumnName(i));
+            } for (int rows = 0; rows < table.getRowCount(); rows++) {
+                for (int cols = 0; cols < table.getColumnCount(); cols++) {
+                    pdfTable.addCell(table.getModel().getValueAt(rows, cols).toString());
+                }
+            }
+            doc.add(pdfTable);
+            doc.close();
+            viewJoptionPane("PDF Generated");
+            } catch (DocumentException ex) {
+            ex.printStackTrace();
+            } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            }
+    }
+    
+        //generate 4digit number 
+    public String generate4Digits(){
+        return String.format("%04d", new Random().nextInt(10000));
+    }
+    
+
    
    
 }

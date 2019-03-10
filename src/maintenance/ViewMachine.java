@@ -314,7 +314,15 @@ public class ViewMachine extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteActionPerformed
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-
+        String file = "machine"+new PredefineMethods().generate4Digits()+".pdf";
+        String filePath = "F:\\NetBeans_Workspace\\CACSystem\\output\\"+file;
+        
+        try {
+            new PredefineMethods().printPDF(filePath, jtabmachine);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ViewMachine.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_printActionPerformed
 
     private void searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyTyped

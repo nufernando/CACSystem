@@ -322,8 +322,13 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2MouseExited
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           AddEmployee ob1 = new AddEmployee();
-           ob1.setVisible(true);
+           AddEmployee ob1;
+        try {
+            ob1 = new AddEmployee();
+            ob1.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(People.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered

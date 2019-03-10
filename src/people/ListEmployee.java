@@ -22,7 +22,7 @@ public class ListEmployee extends javax.swing.JFrame {
      */
     public ListEmployee() {
         initComponents();
-        PredefineMethods.tableload("Select * from machine", jtabmachine);
+        PredefineMethods.tableload("Select * from employee", jtabmachine);
     }
    
 
@@ -270,18 +270,18 @@ public class ListEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PredefineMethods.tableload("Select * from machine", jtabmachine);    
+        PredefineMethods.tableload("Select * from employee", jtabmachine);    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AddMachine a;
+        AddEmployee a;
         try {
-            a = new AddMachine();
+            a = new AddEmployee();
             a.setVisible(true);
-            PredefineMethods.tableload("Select * from machine", jtabmachine); 
         } catch (SQLException ex) {
             Logger.getLogger(ListEmployee.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -294,28 +294,41 @@ public class ListEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_editMouseClicked
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-    String qry = "Update machine SET "
-                    + "name = '"+PredefineMethods.getUpdateValue("Enter Name:", jtabmachine.getValueAt(row,1).toString())+"',"
-                    + "manufacturer = '"+PredefineMethods.getUpdateValue("Enter Manufaturer:", jtabmachine.getValueAt(row,2).toString())+"',"
-                    + "date_of_purchase = '"+PredefineMethods.getUpdateValue("Enter date Purchased:", jtabmachine.getValueAt(row,3).toString())+"',"
-                    + "department = '"+PredefineMethods.getUpdateValue("Enter department:", jtabmachine.getValueAt(row,4).toString())+"',"
-                    + "status = '"+PredefineMethods.getUpdateValue("Enter status:", jtabmachine.getValueAt(row,5).toString())+"' "
-                    + "where machine_ref_no = '"+jtabmachine.getValueAt(row,0)+"'";
+    String qry = "Update employee SET "
+                    + "epfNo = '"+PredefineMethods.getUpdateValue("Enter EPF no:", jtabmachine.getValueAt(row,1).toString())+"',"
+                    + "fname = '"+PredefineMethods.getUpdateValue("Enter First Name:", jtabmachine.getValueAt(row,2).toString())+"',"
+                    + "lname = '"+PredefineMethods.getUpdateValue("Enter Last name:", jtabmachine.getValueAt(row,3).toString())+"',"
+                    + "email = '"+PredefineMethods.getUpdateValue("Enter email:", jtabmachine.getValueAt(row,4).toString())+"',"
+                    + "phone = '"+PredefineMethods.getUpdateValue("Enter phone:", jtabmachine.getValueAt(row,5).toString())+"',"
+                    + "address = '"+PredefineMethods.getUpdateValue("Enter Address:", jtabmachine.getValueAt(row,6).toString())+"',"
+                    + "dob = '"+PredefineMethods.getUpdateValue("Enter Date of Birth:", jtabmachine.getValueAt(row,7).toString())+"',"
+                    + "nic = '"+PredefineMethods.getUpdateValue("Enter NIC:", jtabmachine.getValueAt(row,8).toString())+"',"
+                    + "jdate = '"+PredefineMethods.getUpdateValue("Enter join Date:", jtabmachine.getValueAt(row,9).toString())+"',"
+                    + "user_level = '"+PredefineMethods.getUpdateValue("Enter user Level:", jtabmachine.getValueAt(row,10).toString())+"' "
+                    + "where empNo = '"+jtabmachine.getValueAt(row,0)+"'";
             PredefineMethods.editDB(qry);
-            PredefineMethods.tableload("Select * from machine", jtabmachine);   
+            PredefineMethods.tableload("Select * from employee", jtabmachine);   
         
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
            if(PredefineMethods.viewJoptionPaneConfirm("Do you really want to delete") == 0){
-               String qry = "DELETE from machine where machine_ref_no = '"+jtabmachine.getValueAt(row,0)+"'";
+               String qry = "DELETE from employee where empNo = '"+jtabmachine.getValueAt(row,0)+"'";
                PredefineMethods.editDB(qry);
-               PredefineMethods.tableload("Select * from machine", jtabmachine);  
+               PredefineMethods.tableload("Select * from employee", jtabmachine);  
            }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-
+        String file = "employee"+new PredefineMethods().generate4Digits()+".pdf";
+        String filePath = "F:\\NetBeans_Workspace\\CACSystem\\output\\"+file;
+        
+        try {
+            new PredefineMethods().printPDF(filePath, jtabmachine);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ViewMachine.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_printActionPerformed
 
     private void searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyTyped
@@ -328,9 +341,9 @@ public class ListEmployee extends javax.swing.JFrame {
 
     private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
         if(!search.getText().toString().equals("")){
-            PredefineMethods.tableload("Select * from machine where machine_ref_no = '"+search.getText().toString()+"'", jtabmachine);
+            PredefineMethods.tableload("Select * from employee where empNo = '"+search.getText().toString()+"'", jtabmachine);
         }else{
-            PredefineMethods.tableload("Select * from machine", jtabmachine); 
+            PredefineMethods.tableload("Select * from employee", jtabmachine); 
         }
     }//GEN-LAST:event_searchKeyReleased
 
