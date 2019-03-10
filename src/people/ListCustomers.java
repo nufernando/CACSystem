@@ -5,19 +5,26 @@
  */
 package people;
 
+import maintenance.*;
+import common.PredefineMethods;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author User
  */
 public class ListCustomers extends javax.swing.JFrame {
-
+    private int row;
     /**
-     * Creates new form ListCustomers
+     * Creates new form ViewMachine
      */
     public ListCustomers() {
         initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        PredefineMethods.tableload("Select * from customer", jtabmachine);
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,348 +36,314 @@ public class ListCustomers extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        Print = new javax.swing.JButton();
-        refresh = new javax.swing.JButton();
-        back = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        previous = new javax.swing.JButton();
-        first = new javax.swing.JButton();
-        next = new javax.swing.JButton();
-        last = new javax.swing.JButton();
-        pageNo = new javax.swing.JLabel();
-        slash = new javax.swing.JLabel();
+        jtabmachine = new javax.swing.JTable();
         search = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        addSupplier = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        delete = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         edit = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        print = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Customers");
 
-        Print.setBackground(new java.awt.Color(71, 71, 116));
-        Print.setForeground(new java.awt.Color(255, 255, 255));
-        Print.setText("Print");
-        Print.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrintActionPerformed(evt);
-            }
-        });
-
-        refresh.setBackground(new java.awt.Color(25, 176, 9));
-        refresh.setForeground(new java.awt.Color(255, 255, 255));
-        refresh.setText("Refresh");
-        refresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshActionPerformed(evt);
-            }
-        });
-
-        back.setBackground(new java.awt.Color(219, 76, 13));
-        back.setForeground(new java.awt.Color(255, 255, 255));
-        back.setText("Back");
-        back.setToolTipText("");
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("entries");
-
-        jTextField1.setText("1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("show");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtabmachine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Customer ID", "Name", "Email", "Phone", "Address", "City", "Bill address", "State", "Postal Code", "VAT", "SVAT"
+                "Machine Reference No", "Machine Name", "Manufacturer", "Date Of Purchase", "Department of use", "Status"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtabmachine.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                jtabmachineMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jtabmachine.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtabmachineKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtabmachine);
 
-        previous.setBackground(new java.awt.Color(71, 71, 116));
-        previous.addActionListener(new java.awt.event.ActionListener() {
+        search.setText("customer#");
+        search.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                searchCaretUpdate(evt);
+            }
+        });
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                previousActionPerformed(evt);
+                searchActionPerformed(evt);
+            }
+        });
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchKeyTyped(evt);
             }
         });
 
-        first.setBackground(new java.awt.Color(71, 71, 116));
-        first.addActionListener(new java.awt.event.ActionListener() {
+        jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
+
+        jButton1.setBackground(new java.awt.Color(0, 179, 50));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Refresh");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton1.setIconTextGap(10);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        next.setBackground(new java.awt.Color(71, 71, 116));
-        next.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(new java.awt.Color(0, 2, 240));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("+  Add New Customer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        last.setBackground(new java.awt.Color(71, 71, 116));
-        last.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setBackground(new java.awt.Color(219, 76, 13));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        pageNo.setText("4");
-
-        slash.setText("/");
-
-        search.setText("Search");
-        search.getDocument().addDocumentListener(new DocumentListener(){
-            public void changedUpdate(DocumentEvent e){
-                m.search(search.getText(), "select * from customer where name like '%"+search.getText()+"%' or email like '%"+search.getText()+"%' or custID like '%"+search.getText()+"%' or phone like '%"+search.getText()+"%' or address like '%"+search.getText()+"%' or city like '%"+search.getText()+"%' or ba like '%"+search.getText()+"%' or ba1 like '%"+search.getText()+"%' or ba2 like '%"+search.getText()+"%' or ba3 like '%"+search.getText()+"%' or state like '%"+search.getText()+"%' or pc like '%"+search.getText()+"%' or vat like '%"+search.getText()+"%' or svat like '%"+search.getText()+"%'", jTable1);
-            }
-            public void removeUpdate(DocumentEvent e){
-                m.search(search.getText(), "select * from customer where name like '%"+search.getText()+"%' or email like '%"+search.getText()+"%' or custID like '%"+search.getText()+"%' or phone like '%"+search.getText()+"%' or address like '%"+search.getText()+"%' or city like '%"+search.getText()+"%' or ba like '%"+search.getText()+"%' or ba1 like '%"+search.getText()+"%' or ba2 like '%"+search.getText()+"%' or ba3 like '%"+search.getText()+"%' or state like '%"+search.getText()+"%' or pc like '%"+search.getText()+"%' or vat like '%"+search.getText()+"%' or svat like '%"+search.getText()+"%'", jTable1);
-            }
-            public void insertUpdate(DocumentEvent e){
-                m.search(search.getText(), "select * from customer where name like '%"+search.getText()+"%' or email like '%"+search.getText()+"%' or custID like '%"+search.getText()+"%' or phone like '%"+search.getText()+"%' or address like '%"+search.getText()+"%' or city like '%"+search.getText()+"%' or ba like '%"+search.getText()+"%' or ba1 like '%"+search.getText()+"%' or ba2 like '%"+search.getText()+"%' or ba3 like '%"+search.getText()+"%' or state like '%"+search.getText()+"%' or pc like '%"+search.getText()+"%' or vat like '%"+search.getText()+"%' or svat like '%"+search.getText()+"%'", jTable1);
-            }
-        });
-
-        addSupplier.setBackground(new java.awt.Color(10, 24, 224));
-        addSupplier.setForeground(new java.awt.Color(255, 255, 255));
-        addSupplier.setText("+ Add Customer");
-        addSupplier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSupplierActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        delete.setBackground(new java.awt.Color(204, 0, 0));
-        delete.setForeground(new java.awt.Color(255, 255, 255));
-        delete.setText("Delete");
-        delete.setPreferredSize(new java.awt.Dimension(71, 25));
-        delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 90, -1));
-
-        edit.setBackground(new java.awt.Color(0, 0, 204));
+        edit.setBackground(new java.awt.Color(0, 0, 255));
+        edit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         edit.setForeground(new java.awt.Color(255, 255, 255));
         edit.setText("Edit");
+        edit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editMouseClicked(evt);
+            }
+        });
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editActionPerformed(evt);
             }
         });
-        jPanel1.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+
+        delete.setBackground(new java.awt.Color(255, 0, 0));
+        delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        delete.setForeground(new java.awt.Color(255, 255, 255));
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+
+        print.setBackground(new java.awt.Color(71, 71, 116));
+        print.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        print.setForeground(new java.awt.Color(255, 255, 255));
+        print.setText("Print");
+        print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 910, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(706, 706, 706)
-                            .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(224, 224, 224)
-                            .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(addSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(Print, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(448, 448, 448)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(10, 10, 10)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(40, 40, 40)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(330, 330, 330)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(7, 7, 7)
-                            .addComponent(first, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
-                            .addComponent(previous, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(3, 3, 3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(slash, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(17, 17, 17)
-                                    .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(pageNo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(10, 10, 10)
-                            .addComponent(last, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(363, 363, 363)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
-                        .addComponent(back))
+                        .addComponent(jButton3))
+                    .addGap(11, 11, 11)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(refresh)
-                                .addComponent(addSupplier)
-                                .addComponent(Print))))
-                    .addGap(10, 10, 10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(10, 10, 10)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(250, 250, 250)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(first, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(previous, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(slash, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pageNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(last, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(0, 355, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+    private void jtabmachineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabmachineMouseClicked
+        row = jtabmachine.getSelectedRow();
+    }//GEN-LAST:event_jtabmachineMouseClicked
 
-    }//GEN-LAST:event_refreshActionPerformed
+    private void searchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchCaretUpdate
+    
+    }//GEN-LAST:event_searchCaretUpdate
 
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        search.setText("");
+    }//GEN-LAST:event_searchMouseClicked
 
-    }//GEN-LAST:event_backActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_searchActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PredefineMethods.tableload("Select * from customer", jtabmachine);    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    }//GEN-LAST:event_jTextField1KeyTyped
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        AddCustomer a;
+        try {
+            a = new AddCustomer();
+            a.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListCustomers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
-
-    }//GEN-LAST:event_previousActionPerformed
-
-    private void firstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstActionPerformed
-
-    }//GEN-LAST:event_firstActionPerformed
-
-    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-
-    }//GEN-LAST:event_nextActionPerformed
-
-    private void lastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastActionPerformed
-
-    }//GEN-LAST:event_lastActionPerformed
-
-    private void addSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSupplierActionPerformed
-
-    }//GEN-LAST:event_addSupplierActionPerformed
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-
-    }//GEN-LAST:event_deleteActionPerformed
+    private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
+ 
+    }//GEN-LAST:event_editMouseClicked
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-
+    String qry = "Update customer SET "
+                    + "company = '"+PredefineMethods.getUpdateValue("Enter Company Name:", jtabmachine.getValueAt(row,1).toString())+"',"
+                    + "email = '"+PredefineMethods.getUpdateValue("Enter email:", jtabmachine.getValueAt(row,2).toString())+"',"
+                    + "phone = '"+PredefineMethods.getUpdateValue("Enter phone:", jtabmachine.getValueAt(row,3).toString())+"',"
+                    + "address = '"+PredefineMethods.getUpdateValue("Enter address:", jtabmachine.getValueAt(row,4).toString())+"',"
+                    + "city = '"+PredefineMethods.getUpdateValue("Enter city:", jtabmachine.getValueAt(row,5).toString())+"',"
+                    + "billing_address = '"+PredefineMethods.getUpdateValue("Enter billing Address:", jtabmachine.getValueAt(row,6).toString())+"',"
+                    + "billing_address1 = '"+PredefineMethods.getUpdateValue("Enter billing Address1:", jtabmachine.getValueAt(row,7).toString())+"',"
+                    + "billing_address2 = '"+PredefineMethods.getUpdateValue("Enter billing Address2:", jtabmachine.getValueAt(row,8).toString())+"',"
+                    + "billing_address3 = '"+PredefineMethods.getUpdateValue("Enter billing Address3:", jtabmachine.getValueAt(row,9).toString())+"',"
+                    + "state = '"+PredefineMethods.getUpdateValue("Enter state:", jtabmachine.getValueAt(row,10).toString())+"',"
+                    + "postal_code = '"+PredefineMethods.getUpdateValue("Enter postal_code:", jtabmachine.getValueAt(row,11).toString())+"',"
+                    + "vat_no = '"+PredefineMethods.getUpdateValue("Enter vatNo:", jtabmachine.getValueAt(row,12).toString())+"',"
+                    + "svat_no = '"+PredefineMethods.getUpdateValue("Enter svatNo:", jtabmachine.getValueAt(row,13).toString())+"' "
+                    + "where customer_id = '"+jtabmachine.getValueAt(row,0)+"'";
+            PredefineMethods.editDB(qry);
+            PredefineMethods.tableload("Select * from customer", jtabmachine);   
+        
     }//GEN-LAST:event_editActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+           if(PredefineMethods.viewJoptionPaneConfirm("Do you really want to delete") == 0){
+               String qry = "DELETE from customer where customer_id = '"+jtabmachine.getValueAt(row,0)+"'";
+               PredefineMethods.editDB(qry);
+               PredefineMethods.tableload("Select * from customer", jtabmachine);  
+           }
+    }//GEN-LAST:event_deleteActionPerformed
 
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
 
-    private void PrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintActionPerformed
+    }//GEN-LAST:event_printActionPerformed
 
-    }//GEN-LAST:event_PrintActionPerformed
+    private void searchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyTyped
+        
+    }//GEN-LAST:event_searchKeyTyped
+
+    private void searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyPressed
+        
+    }//GEN-LAST:event_searchKeyPressed
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+        if(!search.getText().toString().equals("")){
+            PredefineMethods.tableload("Select * from customer where customer_id = '"+search.getText().toString()+"'", jtabmachine);
+        }else{
+            PredefineMethods.tableload("Select * from customer", jtabmachine); 
+        }
+    }//GEN-LAST:event_searchKeyReleased
+
+    private void jtabmachineKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtabmachineKeyReleased
+
+    }//GEN-LAST:event_jtabmachineKeyReleased
 
     /**
      * @param args the command line arguments
@@ -398,6 +371,7 @@ public class ListCustomers extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ListCustomers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -408,27 +382,16 @@ public class ListCustomers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Print;
-    private javax.swing.JButton addSupplier;
-    private javax.swing.JButton back;
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
-    private javax.swing.JButton first;
-    protected javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    protected javax.swing.JTextField jTextField1;
-    private javax.swing.JButton last;
-    private javax.swing.JButton next;
-    protected javax.swing.JLabel pageNo;
-    private javax.swing.JButton previous;
-    private javax.swing.JButton refresh;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTable jtabmachine;
+    private javax.swing.JButton print;
     private javax.swing.JTextField search;
-    private javax.swing.JLabel slash;
     // End of variables declaration//GEN-END:variables
 }

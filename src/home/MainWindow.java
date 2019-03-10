@@ -9,6 +9,9 @@ import common.PredefineMethods;
 import inventory.Inventory;
 import stores_and_packing.StoresPacking;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import maintenance.Maintenance;
@@ -608,10 +611,16 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ProductionMouseExited
 
     private void InventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventoryMouseClicked
-        Inventory ob1 = new Inventory() {};
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
+        Inventory ob1;
+        try {
+            ob1 = new Inventory();
+            BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
         bi.setNorthPane(null);
         desktopPane.add(ob1).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_InventoryMouseClicked
 
     private void InventoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventoryMouseEntered
@@ -623,10 +632,16 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_InventoryMouseExited
 
     private void PeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeopleMouseClicked
-        People ob1 = new People() {};
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
+        People ob1;
+        try {
+            ob1 = new People();
+            BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
         bi.setNorthPane(null);
         desktopPane.add(ob1).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_PeopleMouseClicked
 
     private void PeopleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeopleMouseEntered
@@ -638,10 +653,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_PeopleMouseExited
 
     private void DBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DBMouseClicked
-        Maintenance ob1 = new Maintenance();
+        try{
+            Maintenance ob1 = new Maintenance();
         BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
         bi.setNorthPane(null);
         desktopPane.add(ob1).setVisible(true);
+        }catch(Exception e){e.printStackTrace();}
     }//GEN-LAST:event_DBMouseClicked
 
     private void DBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DBMouseEntered
@@ -653,10 +670,16 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_DBMouseExited
 
     private void SPLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SPLMouseClicked
-        StoresPacking ob1 = new StoresPacking();
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
+        StoresPacking ob1;
+        try {
+            ob1 = new StoresPacking();
+            BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
         bi.setNorthPane(null);
         desktopPane.add(ob1).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_SPLMouseClicked
 
     private void SPLMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SPLMouseEntered

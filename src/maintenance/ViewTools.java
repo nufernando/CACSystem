@@ -5,18 +5,24 @@
  */
 package maintenance;
 
+import common.PredefineMethods;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author User
  */
 public class ViewTools extends javax.swing.JFrame {
-
+    private int row;
     /**
      * Creates new form ViewTools
      */
     public ViewTools() {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        PredefineMethods.tableload("Select * from tool", jtabmachine);  
     }
 
     /**
@@ -37,16 +43,6 @@ public class ViewTools extends javax.swing.JFrame {
         search = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         print = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        total = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        page = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        limit1 = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -137,70 +133,6 @@ public class ViewTools extends javax.swing.JFrame {
             }
         });
         jPanel3.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, 90, 30));
-
-        jButton5.setBackground(new java.awt.Color(71, 71, 116));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 30, 30));
-
-        jButton8.setBackground(new java.awt.Color(71, 71, 116));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 30, 30));
-
-        total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel3.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 30, 30));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("/");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 30, 30));
-
-        page.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pageActionPerformed(evt);
-            }
-        });
-        jPanel3.add(page, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 30, 30));
-
-        jButton7.setBackground(new java.awt.Color(71, 71, 116));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 30, 30));
-
-        jButton6.setBackground(new java.awt.Color(71, 71, 116));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 30, 30));
-
-        jLabel10.setText("Showing");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 50, 30));
-
-        limit1.setEditable(true);
-        limit1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "10", "15" }));
-        limit1.setSelectedIndex(2);
-        limit1.setAlignmentX(5.0F);
-        limit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limit1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(limit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 60, 30));
-
-        jLabel11.setText("results per page");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 100, 30));
 
         jButton1.setBackground(new java.awt.Color(0, 179, 50));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -315,16 +247,12 @@ public class ViewTools extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtabmachineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabmachineMouseClicked
- 
-    }//GEN-LAST:event_jtabmachineMouseClicked
-
     private void searchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchCaretUpdate
 
     }//GEN-LAST:event_searchCaretUpdate
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-   
+        search.setText("");   
     }//GEN-LAST:event_searchMouseClicked
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
@@ -335,53 +263,50 @@ public class ViewTools extends javax.swing.JFrame {
 
     }//GEN-LAST:event_printActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void pageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pageActionPerformed
-
-    }//GEN-LAST:event_pageActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void limit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limit1ActionPerformed
-   
-    }//GEN-LAST:event_limit1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        PredefineMethods.tableload("Select * from tool", jtabmachine);    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        AddTools a1;
+        try {
+            a1 = new AddTools();
+             a1.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewTools.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+     this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-
+       String qry = "Update tool SET "
+                    + "name = '"+PredefineMethods.getUpdateValue("Enter Name:", jtabmachine.getValueAt(row,1).toString())+"',"
+                    + "type = '"+PredefineMethods.getUpdateValue("Enter type", jtabmachine.getValueAt(row,2).toString())+"',"
+                    + "quantity = '"+PredefineMethods.getUpdateValue("Enter quintaty:", jtabmachine.getValueAt(row,3).toString())+"',"
+                    + "date_of_purchase = '"+PredefineMethods.getUpdateValue("Enter date of purchase:", jtabmachine.getValueAt(row,4).toString())+"' "
+                    + "where tool_ref_no = '"+jtabmachine.getValueAt(row,0)+"'";
+            PredefineMethods.editDB(qry);
+            PredefineMethods.tableload("Select * from tool", jtabmachine);   
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-
+        String qry = "DELETE from tool where tool_ref_no = '"+jtabmachine.getValueAt(row,0)+"'";
+               PredefineMethods.editDB(qry);
+               PredefineMethods.tableload("Select * from tool", jtabmachine);  
+           
     }//GEN-LAST:event_deleteActionPerformed
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jtabmachineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabmachineMouseClicked
+        row = jtabmachine.getSelectedRow();
+    }//GEN-LAST:event_jtabmachineMouseClicked
 
     /**
      * @param args the command line arguments
@@ -424,24 +349,14 @@ public class ViewTools extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jtabmachine;
-    private javax.swing.JComboBox<String> limit1;
-    private javax.swing.JTextField page;
     private javax.swing.JButton print;
     private javax.swing.JTextField search;
-    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,7 +22,7 @@ public class AddTools extends javax.swing.JFrame {
     public AddTools() throws SQLException {
         initComponents();
         toolref.setText(Integer.toString((Integer.parseInt(PredefineMethods.
-                        viewDBValue("SELECT MAX(tool_ref_no) as last_tool_id FROM machine", "last_tool_id")))+1));
+                        viewDBValue("SELECT MAX(tool_ref_no) as last_tool_id FROM tool", "last_tool_id")))+1));
     }
     
     private void setAllNull() {
@@ -201,7 +201,7 @@ public class AddTools extends javax.swing.JFrame {
             
         try {
             toolref.setText(Integer.toString((Integer.parseInt(PredefineMethods.
-                        viewDBValue("SELECT MAX(tool_ref_no) as last_tool_id FROM machine", "last_tool_id")))+1));
+                        viewDBValue("SELECT MAX(tool_ref_no) as last_tool_id FROM tool", "last_tool_id")))+1));
         } catch (SQLException ex) {
             Logger.getLogger(AddMachine.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -15,14 +15,14 @@ import java.util.logging.Logger;
  *
  * @author User
  */
-public class ListEmployee extends javax.swing.JFrame {
+public class ListSupplier extends javax.swing.JFrame {
     private int row;
     /**
      * Creates new form ViewMachine
      */
-    public ListEmployee() {
+    public ListSupplier() {
         initComponents();
-        PredefineMethods.tableload("Select * from machine", jtabmachine);
+        PredefineMethods.tableload("Select * from supplier", jtabmachine);
     }
    
 
@@ -50,7 +50,7 @@ public class ListEmployee extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Employee");
+        jLabel1.setText("Supplier");
 
         jtabmachine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,7 +91,7 @@ public class ListEmployee extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtabmachine);
 
-        search.setText("Employee#");
+        search.setText("Supplier#");
         search.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 searchCaretUpdate(evt);
@@ -136,7 +136,7 @@ public class ListEmployee extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 2, 240));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("+  Add New Employee");
+        jButton2.setText("+  Add New Supplier");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -270,17 +270,17 @@ public class ListEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PredefineMethods.tableload("Select * from machine", jtabmachine);    
+        PredefineMethods.tableload("Select * from supplier", jtabmachine);    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AddMachine a;
+        AddSupplier a;
         try {
-            a = new AddMachine();
+            a = new AddSupplier();
             a.setVisible(true);
-            PredefineMethods.tableload("Select * from machine", jtabmachine); 
+            PredefineMethods.tableload("Select * from supplier", jtabmachine); 
         } catch (SQLException ex) {
-            Logger.getLogger(ListEmployee.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListSupplier.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -294,23 +294,27 @@ public class ListEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_editMouseClicked
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-    String qry = "Update machine SET "
+    String qry = "Update supplier SET "
                     + "name = '"+PredefineMethods.getUpdateValue("Enter Name:", jtabmachine.getValueAt(row,1).toString())+"',"
-                    + "manufacturer = '"+PredefineMethods.getUpdateValue("Enter Manufaturer:", jtabmachine.getValueAt(row,2).toString())+"',"
-                    + "date_of_purchase = '"+PredefineMethods.getUpdateValue("Enter date Purchased:", jtabmachine.getValueAt(row,3).toString())+"',"
-                    + "department = '"+PredefineMethods.getUpdateValue("Enter department:", jtabmachine.getValueAt(row,4).toString())+"',"
-                    + "status = '"+PredefineMethods.getUpdateValue("Enter status:", jtabmachine.getValueAt(row,5).toString())+"' "
-                    + "where machine_ref_no = '"+jtabmachine.getValueAt(row,0)+"'";
+                    + "email = '"+PredefineMethods.getUpdateValue("Enter email:", jtabmachine.getValueAt(row,2).toString())+"',"
+                    + "phone = '"+PredefineMethods.getUpdateValue("Enter phone:", jtabmachine.getValueAt(row,3).toString())+"',"
+                    + "company = '"+PredefineMethods.getUpdateValue("Enter company:", jtabmachine.getValueAt(row,4).toString())+"',"
+                    + "address = '"+PredefineMethods.getUpdateValue("Enter address:", jtabmachine.getValueAt(row,5).toString())+"',"
+                    + "city = '"+PredefineMethods.getUpdateValue("Enter city:", jtabmachine.getValueAt(row,6).toString())+"',"
+                    + "state = '"+PredefineMethods.getUpdateValue("Enter state:", jtabmachine.getValueAt(row,7).toString())+"',"
+                    + "postal_code = '"+PredefineMethods.getUpdateValue("Enter postal Code:", jtabmachine.getValueAt(row,8).toString())+"',"
+                    + "country = '"+PredefineMethods.getUpdateValue("Enter country:", jtabmachine.getValueAt(row,9).toString())+"' "
+                    + "where supplier_id = '"+jtabmachine.getValueAt(row,0)+"'";
             PredefineMethods.editDB(qry);
-            PredefineMethods.tableload("Select * from machine", jtabmachine);   
+            PredefineMethods.tableload("Select * from supplier", jtabmachine);   
         
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
            if(PredefineMethods.viewJoptionPaneConfirm("Do you really want to delete") == 0){
-               String qry = "DELETE from machine where machine_ref_no = '"+jtabmachine.getValueAt(row,0)+"'";
+               String qry = "DELETE from supplier where supplier_id = '"+jtabmachine.getValueAt(row,0)+"'";
                PredefineMethods.editDB(qry);
-               PredefineMethods.tableload("Select * from machine", jtabmachine);  
+               PredefineMethods.tableload("Select * from supplier", jtabmachine);  
            }
     }//GEN-LAST:event_deleteActionPerformed
 
@@ -328,9 +332,9 @@ public class ListEmployee extends javax.swing.JFrame {
 
     private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
         if(!search.getText().toString().equals("")){
-            PredefineMethods.tableload("Select * from machine where machine_ref_no = '"+search.getText().toString()+"'", jtabmachine);
+            PredefineMethods.tableload("Select * from supplier where supplier_id = '"+search.getText().toString()+"'", jtabmachine);
         }else{
-            PredefineMethods.tableload("Select * from machine", jtabmachine); 
+            PredefineMethods.tableload("Select * from supplier", jtabmachine); 
         }
     }//GEN-LAST:event_searchKeyReleased
 
@@ -355,13 +359,13 @@ public class ListEmployee extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListSupplier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -371,7 +375,7 @@ public class ListEmployee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListEmployee().setVisible(true);
+                new ListSupplier().setVisible(true);
             }
         });
     }

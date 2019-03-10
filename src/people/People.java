@@ -277,8 +277,14 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4MouseExited
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        AddSupplier ob1 = new AddSupplier();
-        ob1.setVisible(true);
+        AddSupplier ob1;
+        try {
+            ob1 = new AddSupplier();
+            ob1.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(People.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void listEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listEmpMouseEntered
@@ -290,8 +296,8 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listEmpMouseExited
 
     private void listEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listEmpActionPerformed
-    //    ListEmployee ob1 = new ListEmployee();
-      //  ob1.setVisible(true);
+        ListEmployee ob1 = new ListEmployee();
+        ob1.setVisible(true);
     }//GEN-LAST:event_listEmpActionPerformed
 
     private void listCustMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCustMouseEntered
@@ -303,8 +309,8 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listCustMouseExited
 
     private void listCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCustActionPerformed
- //       ListCustomers ob1 = new ListCustomers();
-  //      ob1.setVisible(true);
+        ListCustomers ob1 = new ListCustomers();
+        ob1.setVisible(true);
     }//GEN-LAST:event_listCustActionPerformed
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -329,8 +335,8 @@ public class People extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6MouseExited
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-      //     ListSuppliers ob1 = new ListSuppliers();
-       //    ob1.setVisible(true);
+           ListSupplier ob1 = new ListSupplier();
+           ob1.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
 

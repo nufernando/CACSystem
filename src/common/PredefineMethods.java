@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.*; 
 import org.freixas.jcalendar.JCalendarCombo;
 import java.util.*;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import net.proteanit.sql.DbUtils;
 
 public class PredefineMethods {
     private String adminPassword = "12345";
@@ -48,6 +50,11 @@ public class PredefineMethods {
     //new JoptionPane
     public static void viewJoptionPane(String message){
         JOptionPane.showMessageDialog(new JFrame(),message,"Alert",JOptionPane.WARNING_MESSAGE);    }
+    
+    //new JoptionPane Dialog Box
+    public static int viewJoptionPaneConfirm(String message){
+        return JOptionPane.showConfirmDialog(new JFrame(),message,"Alert",JOptionPane.WARNING_MESSAGE); 
+    }
     
     //change database values (insert, update, delete)
     public static void editDB(String qry){
@@ -119,8 +126,20 @@ public class PredefineMethods {
         } return result;
     }
     
+    //tableload 
+    public static void tableload(String qry, JTable table){
+        try{ table.setModel(DbUtils.resultSetToTableModel(viewDBresultset(qry)));
+        }catch(Exception e){e.printStackTrace();}
+    }
+    
+    //Get update value
+    public static String getUpdateValue (String msg, String actualValue){
+        String input = JOptionPane.showInputDialog(null,msg);
+        if(input == (null) ){
+            input = actualValue;
+        }
+        return input;
+    }
    
-    
-    
-    
+   
 }
