@@ -158,6 +158,11 @@ public class Dashboard extends javax.swing.JInternalFrame {
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/VehicleAvailable.png"))); // NOI18N
         jLabel25.setText("jLabel4");
+        jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel25MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 130, 130));
 
         jSeparator2.setForeground(new java.awt.Color(248, 65, 65));
@@ -220,6 +225,10 @@ public class Dashboard extends javax.swing.JInternalFrame {
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
 
     }//GEN-LAST:event_jLabel22MouseClicked
+
+    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel25MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
