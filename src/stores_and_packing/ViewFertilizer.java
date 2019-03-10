@@ -119,6 +119,11 @@ public class ViewFertilizer extends javax.swing.JFrame {
                 searchActionPerformed(evt);
             }
         });
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+        });
         jPanel3.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 30));
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
@@ -151,7 +156,7 @@ public class ViewFertilizer extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 2, 240));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("+  Add New Tool");
+        jButton2.setText("+  Add New Fertilizer");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -315,6 +320,14 @@ public class ViewFertilizer extends javax.swing.JFrame {
     private void jtabmachineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabmachineMouseClicked
         row = jtabmachine.getSelectedRow();
     }//GEN-LAST:event_jtabmachineMouseClicked
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+         if(!search.getText().toString().equals("")){
+            PredefineMethods.tableload("Select * from fertilizer where fertilizer_id = '"+search.getText().toString()+"'", jtabmachine);
+        }else{
+            PredefineMethods.tableload("Select * from fertilizer", jtabmachine); 
+        }  
+    }//GEN-LAST:event_searchKeyReleased
 
     /**
      * @param args the command line arguments

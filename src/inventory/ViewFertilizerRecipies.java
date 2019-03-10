@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package stores_and_packing;
+package inventory;
 
+import stores_and_packing.*;
 import maintenance.*;
 import common.PredefineMethods;
 import java.sql.SQLException;
@@ -15,15 +16,27 @@ import java.util.logging.Logger;
  *
  * @author User
  */
-public class ViewChemical extends javax.swing.JFrame {
+public class ViewFertilizerRecipies extends javax.swing.JFrame {
     private int row;
     /**
      * Creates new form ViewTools
      */
-    public ViewChemical() {
+    public ViewFertilizerRecipies() throws SQLException {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        PredefineMethods.tableload("Select * from chemical", jtabmachine);  
+        PredefineMethods.tableload("Select recipe_id, name from fertilizer_recipe", jtabmachine);
+        id.setText(Integer.toString((Integer.parseInt(PredefineMethods.
+                        viewDBValue("SELECT MAX(recipe_id) as last_recipe_id FROM fertilizer_recipe", "last_recipe_id")))+1));
+    }
+    
+    public String getNoteValue(String id) throws SQLException{
+        String qry = "Select Recipe from fertilizer_recipe where recipe_id = '"+id+"'";
+        return PredefineMethods.viewDBValue(qry, "Recipe");
+    }
+    
+    private void setAllNull(){
+        name.setText("");
+        jTextArea1.setText("");
     }
 
     /**
@@ -38,17 +51,22 @@ public class ViewChemical extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabmachine = new javax.swing.JTable();
         search = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         print = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,9 +81,10 @@ public class ViewChemical extends javax.swing.JFrame {
         });
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Chemical");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 372, -1));
+        id.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        id.setForeground(new java.awt.Color(255, 51, 0));
+        id.setText("Recipe ID ");
+        jPanel3.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 230, -1));
 
         jtabmachine.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,9 +120,9 @@ public class ViewChemical extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtabmachine);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 910, 260));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, 290));
 
-        search.setText("search Chemical Id#");
+        search.setText("search Fertilizer Id#");
         search.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 searchCaretUpdate(evt);
@@ -124,7 +143,7 @@ public class ViewChemical extends javax.swing.JFrame {
                 searchKeyReleased(evt);
             }
         });
-        jPanel3.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 30));
+        jPanel3.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 190, 30));
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 920, 13));
@@ -140,29 +159,16 @@ public class ViewChemical extends javax.swing.JFrame {
         });
         jPanel3.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, 90, 30));
 
-        jButton1.setBackground(new java.awt.Color(0, 179, 50));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Refresh");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton1.setIconTextGap(10);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 120, 30));
-
         jButton2.setBackground(new java.awt.Color(0, 2, 240));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("+  Add New Chemical");
+        jButton2.setText("+  Add  Recipe");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 180, 30));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 180, 30));
 
         jButton3.setBackground(new java.awt.Color(219, 76, 13));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -184,7 +190,7 @@ public class ViewChemical extends javax.swing.JFrame {
                 editActionPerformed(evt);
             }
         });
-        jPanel3.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, -1, 30));
+        jPanel3.add(edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, -1, 30));
 
         delete.setBackground(new java.awt.Color(255, 0, 0));
         delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -195,7 +201,28 @@ public class ViewChemical extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        jPanel3.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, 100, 30));
+        jPanel3.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 100, 30));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 690, 240));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Fertilizer Recipies");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 372, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Fertilizer name :");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 180, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setText("Fertilizer Recipe ID :");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 230, -1));
+
+        name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel3.add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 112, 230, 30));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -266,7 +293,7 @@ public class ViewChemical extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-        String file = "chemical"+new PredefineMethods().generate4Digits()+".pdf";
+        String file = "fertilize_recipe"+new PredefineMethods().generate4Digits()+".pdf";
         String filePath = "F:\\NetBeans_Workspace\\CACSystem\\output\\"+file;
         
         try {
@@ -277,17 +304,22 @@ public class ViewChemical extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_printActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PredefineMethods.tableload("Select * from chemical", jtabmachine);    
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            new AddFertilizer().setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewChemical.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       String qry = "INSERT INTO fertilizer_recipe (name, Recipe) "
+               + "VALUES ('"+PredefineMethods.getTextField(name)+"',"
+               + "'"+jTextArea1.getText().toString()+"')";
        
+       PredefineMethods.editDB(qry);
+       PredefineMethods.viewJoptionPane("Fertilizer Recipe Successfully Added");
+       PredefineMethods.tableload("Select recipe_id, name from fertilizer_recipe", jtabmachine);  
+       
+               try {
+            id.setText(Integer.toString((Integer.parseInt(PredefineMethods.
+                        viewDBValue("SELECT MAX(recipe_id) as last_recipe_id FROM fertilizer_recipe", "last_recipe_id")))+1));
+        } catch (SQLException ex) {
+            Logger.getLogger(AddMachine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setAllNull();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -295,21 +327,18 @@ public class ViewChemical extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-       String qry = "Update chemical SET "
-                    + "name = '"+PredefineMethods.getUpdateValue("Enter Name:", jtabmachine.getValueAt(row,1).toString())+"',"
-                    + "type = '"+PredefineMethods.getUpdateValue("Enter type", jtabmachine.getValueAt(row,2).toString())+"',"
-                    + "quantity = '"+PredefineMethods.getUpdateValue("Enter quintaty:", jtabmachine.getValueAt(row,3).toString())+"',"
-                    + "appear = '"+PredefineMethods.getUpdateValue("Enter first apper date:", jtabmachine.getValueAt(row,4).toString())+"',"
-                    + "Note = '"+PredefineMethods.getUpdateValue("Enter Special Notes:", jtabmachine.getValueAt(row,5).toString())+"' "
-                    + "where chemical_id = '"+jtabmachine.getValueAt(row,0)+"'";
+       String qry = "Update fertilizer_recipe SET name = '"+PredefineMethods.getTextField(name)+"',"
+               + "Recipe = '"+jTextArea1.getText().toString()+"' "
+               + "where recipe_id = '"+id.getText().toString()+"'";
+                   
             PredefineMethods.editDB(qry);
-            PredefineMethods.tableload("Select * from chemical", jtabmachine);   
+            PredefineMethods.tableload("Select recipe_id, name from fertilizer_recipe", jtabmachine);   
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        String qry = "DELETE from chemical where chemical_id = '"+jtabmachine.getValueAt(row,0)+"'";
+        String qry = "DELETE from fertilizer_recipe where recipe_id = '"+id.getText().toString()+"'";
                PredefineMethods.editDB(qry);
-               PredefineMethods.tableload("Select * from chemical", jtabmachine);  
+               PredefineMethods.tableload("Select recipe_id, name from fertilizer_recipe", jtabmachine);  
            
     }//GEN-LAST:event_deleteActionPerformed
 
@@ -319,13 +348,20 @@ public class ViewChemical extends javax.swing.JFrame {
 
     private void jtabmachineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabmachineMouseClicked
         row = jtabmachine.getSelectedRow();
+        name.setText(jtabmachine.getValueAt(row, 1).toString());
+        id.setText(jtabmachine.getValueAt(row, 0).toString());
+        try {
+            jTextArea1.setText(getNoteValue(jtabmachine.getValueAt(row, 0).toString()));
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewFertilizerRecipies.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jtabmachineMouseClicked
 
     private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
-        if(!search.getText().toString().equals("")){
-            PredefineMethods.tableload("Select * from chemical where chemical_id = '"+search.getText().toString()+"'", jtabmachine);
+          if(!search.getText().toString().equals("")){
+            PredefineMethods.tableload("Select recipe_id, name from fertilizer_recipe where recipe_id = '"+search.getText().toString()+"'", jtabmachine);
         }else{
-            PredefineMethods.tableload("Select * from chemical", jtabmachine); 
+            PredefineMethods.tableload("Select recipe_id, name from fertilizer_recipe", jtabmachine);  
         }  
     }//GEN-LAST:event_searchKeyReleased
 
@@ -346,14 +382,26 @@ public class ViewChemical extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewChemical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFertilizerRecipies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewChemical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFertilizerRecipies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewChemical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFertilizerRecipies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewChemical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewFertilizerRecipies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -362,7 +410,11 @@ public class ViewChemical extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewChemical().setVisible(true);
+                try {
+                    new ViewFertilizerRecipies().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ViewFertilizerRecipies.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -370,16 +422,21 @@ public class ViewChemical extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel id;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable jtabmachine;
+    private javax.swing.JTextField name;
     private javax.swing.JButton print;
     private javax.swing.JTextField search;
     // End of variables declaration//GEN-END:variables

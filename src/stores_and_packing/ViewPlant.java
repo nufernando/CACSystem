@@ -64,7 +64,7 @@ public class ViewPlant extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Fertilizer");
+        jLabel1.setText("Plant");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 372, -1));
 
         jtabmachine.setModel(new javax.swing.table.DefaultTableModel(
@@ -103,7 +103,7 @@ public class ViewPlant extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 910, 260));
 
-        search.setText("search Fertilizer Id#");
+        search.setText("search Plant Id#");
         search.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 searchCaretUpdate(evt);
@@ -117,6 +117,11 @@ public class ViewPlant extends javax.swing.JFrame {
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
+            }
+        });
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
             }
         });
         jPanel3.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 160, 30));
@@ -151,7 +156,7 @@ public class ViewPlant extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 2, 240));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("+  Add New Tool");
+        jButton2.setText("+  Add New Plant");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -278,7 +283,7 @@ public class ViewPlant extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            new AddFertilizer().setVisible(true);
+            new AddPlant().setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(ViewPlant.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -315,6 +320,14 @@ public class ViewPlant extends javax.swing.JFrame {
     private void jtabmachineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabmachineMouseClicked
         row = jtabmachine.getSelectedRow();
     }//GEN-LAST:event_jtabmachineMouseClicked
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+       if(!search.getText().toString().equals("")){
+            PredefineMethods.tableload("Select * from plant where plant_id = '"+search.getText().toString()+"'", jtabmachine);
+        }else{
+            PredefineMethods.tableload("Select * from plant", jtabmachine); 
+        }  
+    }//GEN-LAST:event_searchKeyReleased
 
     /**
      * @param args the command line arguments

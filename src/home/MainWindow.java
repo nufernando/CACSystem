@@ -609,14 +609,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void InventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InventoryMouseClicked
         Inventory ob1;
-        try {
-            ob1 = new Inventory();
-            BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
+        ob1 = new Inventory();
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)ob1.getUI();
         bi.setNorthPane(null);
         desktopPane.add(ob1).setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
     }//GEN-LAST:event_InventoryMouseClicked
 

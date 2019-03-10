@@ -52,6 +52,12 @@ public class PredefineMethods {
     
     //To reset Button Color function 
     public static void resetButtonColor(JButton button) { button.setBackground(new Color(0, 150, 150));}
+    
+        //To Set Label Color function 
+    public static void setLabelColor(JLabel label) { label.setBackground(new Color(0, 165, 165));}
+    
+    //To reset Button Color function 
+    public static void resetlabelnColor(JLabel label) { label.setBackground(new Color(0, 150, 150));}
 
     //Return admin Password
     public String getAdminPassword() {return adminPassword;}

@@ -101,7 +101,7 @@ public class AddFertilizer extends javax.swing.JFrame {
         getContentPane().add(toname, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 180, 25));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Add Tool Details");
+        jLabel1.setText("Add Fertilizer Details");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 230, 30));
 
         jLabel8.setText("Quantity");
