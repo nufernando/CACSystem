@@ -5,6 +5,10 @@
  */
 package maintenance;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author User
@@ -374,8 +378,14 @@ public class ViewMachine extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AddMachine a = new AddMachine();
-        a.setVisible(true);
+        AddMachine a;
+        try {
+            a = new AddMachine();
+            a.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewMachine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

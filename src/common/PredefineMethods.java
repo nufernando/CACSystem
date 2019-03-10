@@ -9,6 +9,7 @@ import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.*; 
+import org.freixas.jcalendar.JCalendarCombo;
 
 public class PredefineMethods {
     private String adminPassword = "12345";
@@ -68,6 +69,12 @@ public class PredefineMethods {
     //get TextField Values to string
     public static String getTextField(JTextField text){return text.getText().toString();}
     
+    //get Selected ComboBoxValue 
+    public static String getSelectedCombo(JComboBox box){return box.getSelectedItem().toString();}
+    
+        //get Selected ComboBoxValue 
+    public static String getSelectedDate(JCalendarCombo box){return box.getSelectedItem().toString();}
+    
     //get TextLabel Values to string
     public static String getLabel(JLabel text){return text.getText().toString();}
     
@@ -76,6 +83,15 @@ public class PredefineMethods {
     
     //set textFieldValue
     public static void setTextField(JTextField text, String value){text.setText(value); }
+    
+    //set comboBox Value
+    public static void setComboBox(JComboBox box, String value){box.setSelectedItem(value); }
+    
+    //Fill combox with database values
+    public static void fillComboBox(JComboBox box, String qry) throws SQLException{
+        ResultSet rs = viewDBresultset(qry);
+         while (rs.next()) {box.addItem(rs.getString(1));}
+    }
     
    
     

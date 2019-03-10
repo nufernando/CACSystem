@@ -7,6 +7,9 @@ package maintenance;
 
 import common.PredefineMethods;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 
 /**
@@ -330,13 +333,25 @@ public class Maintenance extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AddRepair ob1 = new AddRepair();
-        ob1.setVisible(true);
+        AddRepair ob1;
+        try {
+            ob1 = new AddRepair();
+            ob1.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Maintenance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        AddServices ob1 = new AddServices();
-        ob1.setVisible(true);
+        AddServices ob1;
+        try {
+            ob1 = new AddServices();
+            ob1.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Maintenance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -365,8 +380,13 @@ public class Maintenance extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        AddMachine a =new AddMachine();
-        a.setVisible(true);
+        AddMachine a;
+        try {
+            a = new AddMachine();
+             a.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Maintenance.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

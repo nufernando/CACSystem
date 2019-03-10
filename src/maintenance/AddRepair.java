@@ -5,6 +5,9 @@
  */
 package maintenance;
 
+import common.PredefineMethods;
+import java.sql.SQLException;
+
 /**
  *
  * @author User
@@ -14,8 +17,18 @@ public class AddRepair extends javax.swing.JFrame {
     /**
      * Creates new form AddRepair
      */
-    public AddRepair() {
+    public AddRepair() throws SQLException {
         initComponents();
+        PredefineMethods.fillComboBox(machrefno, "SELECT machine_ref_no FROM machine");
+        PredefineMethods.fillComboBox(machname, "SELECT name FROM machine");
+        PredefineMethods.fillComboBox(dept, "select department from machine");
+    }
+    
+        private void setAllNull() {
+        PredefineMethods.setComboBox(machrefno, "Select..");
+        PredefineMethods.setComboBox(machname, "Select..");
+        PredefineMethods.setComboBox(dept, "Select..");
+        PredefineMethods.setComboBox(statr, "Select..");
     }
 
     /**
@@ -36,21 +49,15 @@ public class AddRepair extends javax.swing.JFrame {
         dept = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        equiname = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        freq = new javax.swing.JComboBox<>();
         machname = new javax.swing.JComboBox<>();
         machrefno = new javax.swing.JComboBox<>();
-        btnEdit = new javax.swing.JButton();
         error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setText("Machine Ref no");
 
-        statr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "not available", "Available" }));
-        statr.setSelectedIndex(-1);
+        statr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select..", "not available", "Available" }));
 
         jLabel6.setText("Department");
 
@@ -68,8 +75,7 @@ public class AddRepair extends javax.swing.JFrame {
 
         jSeparator3.setBackground(new java.awt.Color(204, 204, 204));
 
-        dept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "B/W Qc", "Washing ", "Hydro ", "Wet Qc", "Drying ", "Cool drying", "Chemicals", "A/W Qc" }));
-        dept.setSelectedIndex(-1);
+        dept.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select..", "B/W Qc", "Washing", "Hydro", "Wet Qc", "Drying", "Cool drying", "Chemicals", "A/W Qc" }));
         dept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deptActionPerformed(evt);
@@ -81,28 +87,12 @@ public class AddRepair extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Add Repair Details");
 
-        jLabel8.setText("Equipment Name");
+        machname.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select.." }));
 
-        jLabel9.setText("Frequency of Repair");
-
-        freq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "daily", "rarely", "oftenly", "occasionaly" }));
-        freq.setSelectedIndex(-1);
-
-        machrefno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        machrefno.setSelectedIndex(-1);
+        machrefno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select.." }));
         machrefno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 machrefnoActionPerformed(evt);
-            }
-        });
-
-        btnEdit.setBackground(new java.awt.Color(0, 0, 255));
-        btnEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
-        btnEdit.setText("Edit  Repair Details");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
             }
         });
 
@@ -111,7 +101,7 @@ public class AddRepair extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -126,10 +116,8 @@ public class AddRepair extends javax.swing.JFrame {
                     .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(170, 170, 170)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(273, Short.MAX_VALUE))
+                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(276, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 59, Short.MAX_VALUE)
@@ -147,23 +135,13 @@ public class AddRepair extends javax.swing.JFrame {
                             .addGap(50, 50, 50)
                             .addComponent(jLabel5)
                             .addGap(46, 46, 46)
-                            .addComponent(machname, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
-                            .addComponent(jLabel8)
-                            .addGap(33, 33, 33)
-                            .addComponent(equiname, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
-                            .addComponent(jLabel9)
-                            .addGap(15, 15, 15)
-                            .addComponent(freq, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(machname, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(0, 144, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(277, Short.MAX_VALUE)
+                .addContainerGap(187, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dept, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -175,10 +153,8 @@ public class AddRepair extends javax.swing.JFrame {
                         .addComponent(statr, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5)
                 .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68))
+                .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(158, 158, 158))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 19, Short.MAX_VALUE)
@@ -195,36 +171,28 @@ public class AddRepair extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addComponent(jLabel5))
                         .addComponent(machname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(10, 10, 10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel8))
-                        .addComponent(equiname, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(24, 24, 24)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(jLabel9))
-                        .addComponent(freq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 250, Short.MAX_VALUE)))
+                    .addGap(0, 336, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-      
+String qry = "INSERT INTO repair (machine_ref_no, name, department, repair_status) VALUES "
+                + "('"+PredefineMethods.getSelectedCombo(machrefno)+"',"
+                + "'"+PredefineMethods.getSelectedCombo(machname)+"',"
+                + "'"+PredefineMethods.getSelectedCombo(dept)+"',"
+                + "'"+PredefineMethods.getSelectedCombo(statr)+"')";
+        
+       PredefineMethods.editDB(qry);
+       PredefineMethods.viewJoptionPane("Customer Successfully Added");
+       
+       setAllNull();      
     }//GEN-LAST:event_submitActionPerformed
 
     private void machrefnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_machrefnoActionPerformed
        
     }//GEN-LAST:event_machrefnoActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-  
-
-    }//GEN-LAST:event_btnEditActionPerformed
 
     private void deptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deptActionPerformed
         // TODO add your handling code here:
@@ -266,22 +234,19 @@ public class AddRepair extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnEdit;
     private javax.swing.JComboBox<String> dept;
-    private javax.swing.JTextField equiname;
     private javax.swing.JLabel error;
-    private javax.swing.JComboBox<String> freq;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JComboBox<String> machname;
     private javax.swing.JComboBox<String> machrefno;
     private javax.swing.JComboBox<String> statr;
     public javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables
+
+
 }
